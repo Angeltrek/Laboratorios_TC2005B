@@ -1,0 +1,2 @@
+Se realizó un nuevo repositorio en mi cuenta de github y se clonó mediante SSH.
+Al clonar por medio de SSH se requiere generar una clave SSH y registrarla al correo electrónico asociado a la cuenta de github.
