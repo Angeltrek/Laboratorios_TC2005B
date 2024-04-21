@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <title>New File</title>
+  </head>
+  <body>
+    <main>
+      <form action="/create-file" method="post">
+        <label for="txt"
+          >Ingresa el texto que deseas guardar en el archivo:</label
+        >
+        <input type="text" id="txt" name="txt" />
+        <br />
+        <label for="fileName">Ingresa el nombre del archivo:</label>
+        <input type="text" id="fileName" name="fileName" />
+        <br />
+        <button type="submit">Guardar en Archivo</button>
+        <br />
+        <a href="/forms"> Atras </a>
+      </form>
+    </main>
+  </body>
+</html>
