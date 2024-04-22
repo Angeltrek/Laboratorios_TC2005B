@@ -1,10 +1,27 @@
 const express = require("express");
 const router = express.Router();
+const ShoppingCart = require("../shoppingCart");
 
-const controller = require("../controllers/cartController");
+router.get("/", (req, res, next) => {
+  const cartContent = ShoppingCart.getCartProducts();
 
-router.get("/", controller.get_cart);
+  const totalPrice = cartContent.reduce((total, product) => {
+    return total + product.price * (1 - product.discountPercentage / 100);
+  }, 0);
 
-router.get("/pay", controller.pay_cart);
+  res.render("cart", {
+    cartProducts: cartContent,
+    cartLength: cartContent.length,
+    totalPrice: totalPrice,
+  });
+});
+
+router.get("/pay", (req, res, next) => {
+  const cartContent = ShoppingCart.getCartProducts();
+
+  res.render("checkout", {
+    cartLength: cartContent.length,
+  });
+});
 
 module.exports = router;

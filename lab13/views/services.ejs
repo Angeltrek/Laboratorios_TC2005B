@@ -1,0 +1,172 @@
+<%- include("includes/head.ejs", { cartLength: cartLength, active: "client"}) %>
+
+<main class="container">
+  <h1>Preguntas frecuentes</h1>
+  <h2>¿Qué otros templating engines existen para node?</h2>
+
+  <br />
+
+  <h2>Explicación de Templates:</h2>
+
+  <ol>
+    <li>
+      <h3>Pug (antes conocido como Jade):</h3>
+      <p>
+        Pug es un motor de plantillas para Node.js y para el navegador que
+        simplifica la escritura de HTML mediante una sintaxis simplificada y más
+        concisa. Utiliza sangrías en lugar de etiquetas de cierre y puntos y
+        comas para indicar la estructura del documento.
+      </p>
+      <pre><code>html
+    head
+        title Mi Página
+    body
+        h1 Bienvenido
+        p Este es un párrafo de ejemplo.
+        </code></pre>
+    </li>
+    <li>
+      <h3>Handlebars:</h3>
+      <p>
+        Handlebars es un motor de plantillas que permite la creación de
+        plantillas HTML con expresiones insertadas. Utiliza dobles llaves
+        <code>{{}}</code> para insertar valores y proporciona estructuras de
+        control como <code>{{#if}}</code> y <code>{{#each}}</code
+        >.
+      </p>
+      <pre><code>&lt;!-- Ejemplo de Handlebars --&gt;
+    &lt;h1&gt;{{ titulo }}&lt;/h1&gt;
+    {{#each lista}}
+    &lt;p&gt;{{ this }}&lt;/p&gt;
+    {{/each}}
+        </code></pre>
+    </li>
+    <li>
+      <h3>EJS (Embedded JavaScript):</h3>
+      <p>
+        EJS es un motor de plantillas que te permite generar HTML con
+        JavaScript. Utiliza etiquetas de apertura y cierre
+        <code>&lt;% %&gt;</code> para insertar código JavaScript en las
+        plantillas.
+      </p>
+      <pre><code>&lt;!-- Ejemplo de EJS --&gt;
+    &lt;h1&gt;&lt;%= titulo %&gt;&lt;/h1&gt;
+    &lt;% for (let item of lista) { %&gt;
+    &lt;p&gt;&lt;%= item %&gt;&lt;/p&gt;
+    &lt;% } %&gt;
+        </code></pre>
+    </li>
+  </ol>
+
+  <h2>Cross-site Scripting (XSS):</h2>
+  <p>
+    Cross-site Scripting (XSS) es una vulnerabilidad de seguridad que permite a
+    un atacante insertar scripts maliciosos (como JavaScript) en páginas web
+    vistas por otros usuarios. Esto puede conducir a ataques como robo de
+    cookies, redirección a sitios maliciosos, y más. Los ataques XSS suelen
+    ocurrir cuando un sitio web no filtra adecuadamente los datos de entrada del
+    usuario antes de mostrarlos en la página. Para prevenir ataques XSS, es
+    importante validar y escapar los datos de entrada del usuario antes de
+    mostrarlos en la página web.
+  </p>
+
+  <br />
+
+  <h2>Beneficios del estilo MVC:</h2>
+  <ul>
+    <li>
+      <h3>Separación de preocupaciones:</h3>
+      <p>
+        MVC separa la lógica de negocio (modelo), la presentación (vista) y el
+        control de la aplicación (controlador), lo que facilita la comprensión y
+        mantenimiento del código.
+      </p>
+    </li>
+    <li>
+      <h3>Reutilización de código:</h3>
+      <p>
+        Debido a la separación de responsabilidades, es más fácil reutilizar
+        componentes de la aplicación en diferentes partes del sistema.
+      </p>
+    </li>
+    <li>
+      <h3>Facilita el desarrollo en equipo:</h3>
+      <p>
+        Al tener roles y responsabilidades claramente definidos para cada
+        componente (modelo, vista, controlador), varios desarrolladores pueden
+        trabajar en diferentes partes de la aplicación simultáneamente sin
+        interferir entre sí.
+      </p>
+    </li>
+    <li>
+      <h3>Facilita las pruebas unitarias:</h3>
+      <p>
+        Debido a la separación de la lógica de negocio y la presentación, es más
+        fácil escribir pruebas unitarias para cada componente por separado.
+      </p>
+    </li>
+  </ul>
+
+  <br />
+
+  <h2>Desventajas del estilo MVC:</h2>
+  <ul>
+    <li>
+      <h3>Complejidad adicional:</h3>
+      <p>
+        Implementar el patrón MVC puede agregar complejidad a una aplicación,
+        especialmente para proyectos pequeños o simples donde la sobrecarga de
+        tener tres capas separadas puede no ser justificada.
+      </p>
+    </li>
+    <li>
+      <h3>Curva de aprendizaje:</h3>
+      <p>
+        Para desarrolladores nuevos en el MVC, puede llevar tiempo comprender
+        completamente cómo interactúan entre sí los componentes del modelo, la
+        vista y el controlador.
+      </p>
+    </li>
+    <li>
+      <h3>Posible sobreingeniería:</h3>
+      <p>
+        En algunos casos, especialmente en proyectos pequeños, el uso de MVC
+        puede llevar a una sobreingeniería, lo que significa que la complejidad
+        agregada no proporciona beneficios significativos.
+      </p>
+    </li>
+    <li>
+      <h3>Posible acoplamiento excesivo:</h3>
+      <p>
+        Si no se diseña adecuadamente, el patrón MVC puede llevar a un
+        acoplamiento excesivo entre los componentes del modelo, la vista y el
+        controlador, lo que dificulta la modificación y el mantenimiento de la
+        aplicación a largo plazo.
+      </p>
+    </li>
+  </ul>
+
+  <br />
+
+  <h2>Referencias:</h2>
+  <ul>
+    <li><a href="https://pugjs.org/api/getting-started.html">PUG</a></li>
+    <li><a href="https://handlebarsjs.com/">handlebars</a></li>
+    <li><a href="https://ejs.co/">EJS</a></li>
+    <li>
+      <a href="https://owasp.org/www-community/attacks/xss/"
+        >Cross-site Scripting (XSS)</a
+      >
+    </li>
+    <li>
+      <a href="https://www.freecodecamp.org/news/model-view-architecture/"
+        >model-view-architecture</a
+      >
+    </li>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Glossary/MVC">MVC</a>
+    </li>
+  </ul>
+</main>
+
+<%- include("includes/foot.ejs") %>
