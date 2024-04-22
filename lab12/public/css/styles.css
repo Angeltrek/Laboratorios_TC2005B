@@ -1,0 +1,245 @@
+/* Importar Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Definir variables de color */
+:root {
+  --main-blue: #042c42;
+  --light-blue: #09085a;
+  --very-light-blue: #1561cb;
+  --bone: #f7eedd;
+}
+
+/* Resetear CSS */
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos globales */
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.navbar-main {
+  background: var(--main-blue);
+}
+
+.nav-belt {
+  width: 80%;
+  justify-content: space-between;
+}
+
+.nav-main {
+  background: var(--light-blue);
+  padding: 0 2rem;
+  justify-content: flex-start;
+}
+
+.nav-belt,
+.nav-main {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.nav-items {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.nav-item {
+  padding: 1rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-item:hover {
+  border-bottom: 2px solid white;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+.active {
+  color: greenyellow;
+}
+
+.nav-fill {
+  flex-grow: 1;
+}
+
+.nav-left {
+  flex-grow: 1;
+}
+
+.nav-brand img {
+  max-width: 2.5rem;
+  border-radius: 100%;
+}
+
+.product-container {
+  display: flex;
+  max-width: 800px;
+  margin: 20px auto;
+  border: 1px solid var(--bone);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.product-image {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-details {
+  flex: 2;
+  padding: 20px;
+}
+
+.product-details h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  margin-bottom: 15px;
+}
+
+.price-container {
+  margin-bottom: 15px;
+}
+
+.original-price {
+  font-size: 18px;
+}
+
+.discounted-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f00;
+}
+
+.discount-percentage {
+  font-size: 14px;
+  color: #888;
+}
+
+.rating-container {
+  margin-bottom: 15px;
+}
+
+.brand-category span {
+  margin-right: 10px;
+}
+
+.brand {
+  font-weight: bold;
+}
+
+.category {
+  font-style: italic;
+}
+
+/* Estilos para los enlaces de paginación */
+.pagination-link {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--bone);
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.pagination-link:hover {
+  background-color: #e0e0e0;
+}
+
+/* Estilos para el selector de página */
+.page-selection {
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: var(--bone);
+  color: #333;
+}
+
+.page-selection:hover {
+  background-color: #e0e0e0;
+}
+
+.page-selection option {
+  background-color: var(--bone);
+}
+
+/* Estilos para el botón de pago */
+button {
+  padding: 10px 20px;
+  background-color: var(--light-blue);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
