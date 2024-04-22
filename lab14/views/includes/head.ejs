@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Store</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar-main">
+        <div class="nav-belt">
+          <div class="nav-left">
+            <div class="nav-brand">
+              <img src="/images/ahund-logo.jpg" alt="brand-logo" />
+            </div>
+          </div>
+          <div class="nav-fill">
+            <% if (session && session.username) { %>
+            <p>Bienvenido, <%= session.username %>!</p>
+            <% } else { %>
+            <p>Bienvenido!</p>
+            <% } %>
+          </div>
+          <div class="nav-right">
+            <ul class="nav-items">
+              <li class="nav-item">
+                <% if (session && session.username) { %>
+                  <a href="/login/logout" class="nav-link active">
+                    <i class="fa-solid fa-user"></i> Logout
+                  </a>
+                <% } else { %>
+                  <% if (active === "login") { %>
+                    <a href="/login" class="nav-link active">
+                      <i class="fa-solid fa-user"></i> Login
+                    </a>
+                  <% } else { %>
+                    <a href="/login" class="nav-link">
+                      <i class="fa-solid fa-user"></i> Login
+                    </a>
+                  <% } %>
+                <% } %>
+              </li>                         
+              <li class="nav-item">
+                <% if(active === "cart") { %>
+                <a href="/cart" class="nav-link active"
+                  ><%= cartLength %>
+                  <i class="fa-solid fa-cart-shopping"></i>Carrito</a
+                >
+                <% } else { %>
+                <a href="/cart" class="nav-link"
+                  ><%= cartLength %>
+                  <i class="fa-solid fa-cart-shopping"></i>Carrito</a
+                >
+                <% } %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="nav-main">
+          <div class="nav-left">
+            <a href="#" class="nav-link"
+              ><i class="fa-solid fa-bars"></i> Todo</a
+            >
+          </div>
+          <div class="nav-fill">
+            <ul class="nav-items">
+              <li class="nav-item">
+                <% if(active === "home") { %>
+                <a href="/" class="nav-link active">Ofertas del Día</a>
+                <% } else { %>
+                <a href="/" class="nav-link">Ofertas del Día</a>
+                <% } %>
+              </li>
+
+              <li class="nav-item">
+                <% if(active === "client") { %> <a
+                  href="/client-services"
+                  class="nav-link active"
+                  >Servicio al Cliente</a
+                >
+                <% } else { %>
+                <a href="/client-services" class="nav-link"
+                  >Servicio al Cliente</a
+                >
+                <% } %>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Vender</a>
+              </li>
+            </ul>
+          </div>
+          <div class="nav-right"></div>
+        </div>
+      </nav>
+    </header>
