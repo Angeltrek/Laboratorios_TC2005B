@@ -20,6 +20,10 @@ app.use("/cart", cartRoutes);
 app.use("/login", loginRoutes);
 app.use("/client-services", clientRoutes);
 
+app.use((req, res, next) => {
+  res.status(404).send("Error 404: Página no encontrada");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
