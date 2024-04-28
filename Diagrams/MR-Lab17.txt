@@ -1,0 +1,35 @@
+User(IdUser, firstName, lastName, age, gender, email, username, password)
+PK(IdUser)
+
+Have(IdUser, IdRole)
+PK(IdUser, IdRole)
+FK(IdUser) REFERNECES User(IdUser)
+FK(IdRole) REFERENCES Role(IdRole)
+
+Role(IdRole, descriptionRole)
+Pk(IdRole)
+
+Own(IdRole, IdPrivilege)
+FK(IdRole) REFERENCES Role(IdRole)
+FK(IdPrivilege) REFERENCES Privilege(IdPrivilege)
+
+Privilege(IdPrivilege, descriptionPrivilege)
+PK(IdPrivilege)
+
+Seller(IdUser, earnings, phone, address)
+PK(IdUser)
+FK(IdUser) REFERENCES User(IdUser)
+
+Order(IdOrder, IdUser, IdPayment, orderNumber, orderDate, deleted, paid)
+PK(IdOrder)
+FK(IdUser) REFERENCES User(IdUser)
+FK(IdPayment) REFERENCES Payment(IdPayment)
+
+Includes(IdCart, IdProduct, price, quantity, discount, total, date)
+PK(IdCart, IdProduct)
+FK(IdCart) REFERENCES Cart(IdCart)
+FK(IdProduct) REFERENCES Product(IdProduct)
+
+Product(IdProduct, IdUser, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail)
+PK(IdPorduct)
+FK(IdUser) REFERENCES User(IdUser)
