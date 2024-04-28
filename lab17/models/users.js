@@ -1,35 +1,17 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
+const db = require("../util/database");
 
 class Users {
-    constructor() {
-        this.user = null;
-    }
+  login(email, password) {
+    return db.execute(
+      "SELECT IdUser FROM User WHERE email = ? AND password = ?",
+      [email, password]
+    );
+  }
 
-    async login(username, password) {
-        try {
-            const response = await fetch(`https://dummyjson.com/users/search?q=${username}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const userData = await response.json();
-            const user = userData.users[0];
-
-            if (!user) {
-                throw new Error('User not found');
-            }
-            const passwordMatch = (password === user.password ? true : false)
-
-            if (!passwordMatch) {
-                throw new Error('Invalid password');
-            }
-
-            return user;
-
-        } catch (error) {
-            console.error('Error fetching or validating user data:', error);
-            throw error;
-        }
-    }
+  getName(IdUser) {
+    return db.execute("SELECT firstName FROM User WHERE IdUser = ?", [IdUser]);
+  }
 }
 
 module.exports = new Users();

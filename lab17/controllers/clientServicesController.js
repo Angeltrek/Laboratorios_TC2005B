@@ -1,10 +1,6 @@
-const ShoppingCart = require("../models/shoppingCart");
-
-exports.get_services = (req, res, next) => {
-  const cartContent = ShoppingCart.getCartProducts();
-
+exports.get_services = async (req, res, next) => {
   res.render("services", {
-    cartLength: cartContent.length,
     session: req.session,
+    active: "client",
   });
 };

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const session = require("express-session");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 const homeRoutes = require("./routes/homeRoutes");
 const cartRoutes = require("./routes/cartRoutes");
@@ -17,7 +17,7 @@ app.use(flash());
 
 app.use(
   session({
-    secret: "tu_secreto", // Clave secreta para firmar la sesión
+    secret: "87AjdK10BU65", // Clave secreta para firmar la sesión
     resave: false,
     saveUninitialized: true,
   })

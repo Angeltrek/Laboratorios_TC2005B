@@ -1,47 +1,44 @@
 const PRODUCTS_PER_PAGE = 10;
+const Products = require("../models/products");
 const ShoppingCart = require("../models/shoppingCart");
-const products = require("../models/products");
 
 exports.get_home = async (req, res, next) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
-
-    const ProductsJSON = products.getProducts();
-
-    const currentPageProducts = ProductsJSON.products.slice(
-      startIndex,
-      startIndex + PRODUCTS_PER_PAGE
-    );
-
-    const totalPages = Math.ceil(
-      ProductsJSON.products.length / PRODUCTS_PER_PAGE
-    );
-
-    const cartContent = ShoppingCart.getCartProducts();
+    const [products, metadata] = await Products.getAllProducts();
 
     res.render("home", {
-      products: currentPageProducts,
-      totalPages: totalPages,
-      currentPage: page,
-      cartLength: cartContent.length,
+      active: "home",
       session: req.session,
+      products: products,
+      currentPage: 0,
+      totalPages: 10,
     });
   } catch (error) {
-    console.error("Error fetching products:", error);
-    res.render("home", {
-      products: [],
-      totalPages: 1,
-      currentPage: 1,
-      session: req.session,
-    });
+    console.error("Error al obtener los productos:", error);
+    res
+      .status(500)
+      .json({ error: "Ocurrió un error al obtener los productos." });
   }
 };
 
-exports.addToCart = (req, res) => {
-  const productId = req.params.productId;
+exports.addToCart = async (req, res) => {
+  const IdUser = req.session.IdUser;
 
-  ShoppingCart.addToCart(productId);
+  if (IdUser) {
+    const productId = req.params.productId;
+    const [productToAdd, metadata1] = await Products.getProduct(productId);
+    const [IdCart, metadata2] = await ShoppingCart.getIdCart(IdUser);
+    const [isAdded, metadata3] = await ShoppingCart.checkIfAdded(
+      IdCart[0].IdCart,
+      productId
+    );
 
-  res.redirect("/");
+    if (isAdded.length < 1) {
+      ShoppingCart.addToCart(productToAdd[0], IdCart[0].IdCart);
+    } else {
+      ShoppingCart.updateCart(IdCart[0].IdCart, isAdded[0]);
+    }
+  } else {
+    res.redirect("/");
+  }
 };

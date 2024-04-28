@@ -1,42 +1,39 @@
-const ShoppingCart = require("../models/shoppingCart");
 const Users = require("../models/users");
 
 exports.get_login = (req, res, next) => {
-  const cartContent = ShoppingCart.getCartProducts();
-
   res.render("login", {
-    cartLength: cartContent.length,
+    active: "login",
     session: req.session,
     messages: req.flash(),
   });
 };
 
 exports.session = async (req, res, next) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
 
   try {
-    const user = await Users.login(username, password);
+    const [user, metadata1] = await Users.login(email, password);
+    const [firstName, metadata2] = await Users.getName(user[0].IdUser);
 
     const sessionData = req.session;
 
-    sessionData.username = user.username;
+    sessionData.IdUser = user[0].IdUser;
+    sessionData.firstName = firstName[0].firstName;
 
     req.flash("success", "¡Inicio de sesión exitoso!");
-
-    res.cookie('address', `${user.address.address}`);
 
     res.redirect("/");
   } catch (error) {
     req.flash("error", "Nombre de usuario o contraseña incorrectos");
 
-    console.error("Error obteniendo usuario:", error);
+    console.error("Error al obtener el usuario:", error);
     res.redirect("/login");
   }
 };
 
 exports.logout = (req, res, next) => {
   req.session.destroy(() => {
-      res.redirect('/');
+    res.redirect("/");
   });
 };

@@ -1,5 +1,4 @@
-<%- include("includes/head.ejs", { cartLength: cartLength, active: "client",
-session: session}) %>
+<%- include("includes/head.ejs", { active: active, session: session}) %>
 
 <main class="container">
   <h1>Preguntas frecuentes</h1>
@@ -149,6 +148,89 @@ session: session}) %>
 
   <br />
 
+  <h2>Preguntas Interacción con la base de datos:</h2>
+
+  <ol>
+    <li>
+      <h3>
+        ¿Qué ventajas tiene escribir el código SQL únicamente en la capa del
+        modelo?
+      </h3>
+      <p>
+        Escribir el código SQL únicamente en la capa del modelo proporciona
+        varios beneficios:
+      </p>
+      <ul>
+        <li>
+          Separación de preocupaciones: Ayuda a mantener una clara separación
+          entre la lógica de negocio (modelo) y la presentación (vista) o el
+          control (controlador).
+        </li>
+        <li>
+          Reutilización de código: Facilita la reutilización del código SQL en
+          diferentes partes de la aplicación.
+        </li>
+        <li>
+          Seguridad: Al mantener el código SQL en una capa separada, se reduce
+          el riesgo de exposición de consultas SQL sensibles a ataques como la
+          inyección SQL.
+        </li>
+        <li>
+          Mantenibilidad: Simplifica la tarea de mantener y actualizar consultas
+          SQL, ya que están centralizadas en una capa específica.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h3>¿Qué es SQL injection y cómo se puede prevenir?</h3>
+      <p>
+        SQL injection es una vulnerabilidad de seguridad que ocurre cuando un
+        atacante inserta código SQL malicioso en una consulta SQL a través de
+        los datos proporcionados por el usuario. Esto puede permitir al atacante
+        ejecutar comandos no autorizados en la base de datos, alterar datos, o
+        incluso eliminar la base de datos por completo.
+      </p>
+      <p>
+        Para prevenir SQL injection, se deben implementar las siguientes medidas
+        de seguridad:
+      </p>
+      <ul>
+        <li>
+          Usar consultas parametrizadas o preparadas: Utilizar consultas
+          parametrizadas o preparadas ayuda a separar los datos de entrada del
+          código SQL, evitando así que los datos proporcionados por el usuario
+          se interpreten como parte del código SQL.
+        </li>
+        <li>
+          Validación de entrada de datos: Validar y filtrar cuidadosamente los
+          datos de entrada del usuario para asegurarse de que cumplan con el
+          formato esperado y no contengan caracteres maliciosos.
+        </li>
+        <li>
+          Usar un ORM (Object-Relational Mapping): Utilizar un ORM puede
+          proporcionar una capa de abstracción sobre la base de datos, lo que
+          reduce la necesidad de escribir consultas SQL directamente y, por lo
+          tanto, ayuda a prevenir SQL injection.
+        </li>
+        <li>
+          Limitar los privilegios de la cuenta de base de datos: Asegurarse de
+          que la cuenta de base de datos utilizada por la aplicación tenga los
+          privilegios mínimos necesarios para realizar las operaciones
+          requeridas, lo que limita el impacto de un posible ataque de inyección
+          SQL.
+        </li>
+        <li>
+          Escapar los datos de entrada: En caso de que sea necesario concatenar
+          datos de entrada del usuario en consultas SQL, escapar los datos
+          utilizando funciones específicas del lenguaje o bibliotecas diseñadas
+          para este propósito.
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <br />
+
   <h2>Referencias:</h2>
   <ul>
     <li><a href="https://pugjs.org/api/getting-started.html">PUG</a></li>
@@ -166,6 +248,35 @@ session: session}) %>
     </li>
     <li>
       <a href="https://developer.mozilla.org/en-US/docs/Glossary/MVC">MVC</a>
+    </li>
+    <li>
+      <a href="https://www.npmjs.com/package/mysql2">mysql2</a>
+    </li>
+    <li>
+      <a
+        href="https://andreafortuna.org/2016/05/16/sql-injection-in-a-nutshell/"
+        >SQL Injection in a nutshell</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://medium.com/visually-explained/sql-injection-attacks-visually-explained-c71b5f9e1af2"
+      >
+        SQL Injection attacks visually explained
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+        >SQL Injection Prevention</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://medium.com/codeep-io/common-security-issues-in-web-applications-part-1-af339360c646"
+      >
+        Common security issues in web applications
+      </a>
     </li>
   </ul>
 </main>

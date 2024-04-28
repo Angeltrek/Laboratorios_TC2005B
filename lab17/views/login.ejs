@@ -1,5 +1,4 @@
-<%- include("includes/head.ejs", { cartLength: cartLength, active: "login",
-session: session}) %>
+<%- include("includes/head.ejs", { active: active, session: session}) %>
 
 <main class="container">
   <div class="login-container">
@@ -7,8 +6,8 @@ session: session}) %>
     <p class="error"><%= messages.error %></p>
     <form id="login-form" action="/login/session" method="post">
       <div class="form-group">
-        <label for="username">Nombre de usuario:</label>
-        <input type="text" id="username" name="username" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
       </div>
       <div class="form-group">
         <label for="password">Contraseña:</label>

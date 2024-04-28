@@ -1,27 +1,41 @@
+const session = require("express-session");
 const ShoppingCart = require("../models/shoppingCart");
 
-exports.get_cart = (req, res, next) => {
-  const cartContent = ShoppingCart.getCartProducts();
+exports.get_cart = async (req, res, next) => {
+  const IdUser = req.session.IdUser;
 
-  const totalPrice = cartContent.reduce((total, product) => {
-    return total + product.price * (1 - product.discountPercentage / 100);
-  }, 0);
+  if (IdUser) {
+    const [cartProducts, metadata] = await ShoppingCart.getCart(
+      req.session.IdUser
+    );
 
-  res.render("cart", {
-    cartProducts: cartContent,
-    cartLength: cartContent.length,
-    totalPrice: totalPrice,
-    session: req.session,
-  });
+    const totalPrice = cartProducts.reduce((total, product) => {
+      return (
+        total +
+        product.price *
+          (1 - product.discountPercentage / 100) *
+          product.quantity
+      );
+    }, 0);
+
+    res.render("cart", {
+      active: "cart",
+      session: req.session,
+      cartProducts: cartProducts,
+      totalPrice: totalPrice,
+    });
+  } else {
+    res.redirect("/");
+  }
 };
 
 exports.pay_cart = (req, res, next) => {
   const cartContent = ShoppingCart.getCartProducts();
   const address = req.cookies.address;
-  
+
   res.render("checkout", {
-    cartLength: cartContent.length,
+    active: "cart",
     session: req.session,
-    address: (address !== null ? address : "")
+    cartProducts: cartProducts,
   });
 };

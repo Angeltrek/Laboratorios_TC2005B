@@ -1,4 +1,4 @@
-<%- include("includes/head.ejs", { cartLength: cartLength, active: "home",
+<%- include("includes/head.ejs", { active: active,
 session: session}) %>
 
 <main class="container">
@@ -12,7 +12,7 @@ session: session}) %>
                     <h1><%= product.title %></h1>
                     <p><%= product.description %></p>
                     <div class="price-container">
-                        <span class="original-price">$<%= product.price.toFixed(2) %></span>
+                        <span class="original-price">$<%= product.price %></span>
                         <% if (product.discountPercentage > 0) { %>
                             <span class="discounted-price">$<%= (product.price * (1 - product.discountPercentage / 100)).toFixed(2) %></span>
                             <span class="discount-percentage">(<%= product.discountPercentage %>% off)</span>
@@ -26,7 +26,7 @@ session: session}) %>
                         <span class="brand">Brand: <%= product.brand %></span>
                         <span class="category">Category: <%= product.category %></span>
                     </div>
-                    <a href="/add-to-cart/<%= product.id %>">+ Add to Cart</a>
+                    <a href="/add-to-cart/<%= product.IdProduct %>">+ Add to Cart</a>
                 </div>
             </div>
         <% }); %>

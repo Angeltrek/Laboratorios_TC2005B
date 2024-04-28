@@ -1,23 +1,12 @@
+const db = require("../util/database");
 class Products {
-    constructor() { 
-        this.init()
-    }
+  getAllProducts() {
+    return db.execute("SELECT * FROM Product");
+  }
 
-    async init() {
-        try {
-            const response = await fetch('https://dummyjson.com/products');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            this.products = await response.json();
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
-
-    getProducts() {
-        return this.products;
-    }
+  getProduct(IdProduct) {
+    return db.execute("SELECT * FROM Product WHERE IdProduct = ?", [IdProduct]);
+  }
 }
 
 module.exports = new Products();
