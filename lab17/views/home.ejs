@@ -1,0 +1,53 @@
+<%- include("includes/head.ejs", { cartLength: cartLength, active: "home",
+session: session}) %>
+
+<main class="container">
+    <div class="product-list">
+        <% products.forEach(product => { %>
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="<%= product.thumbnail %>" alt="<%= product.title %>">
+                </div>
+                <div class="product-details">
+                    <h1><%= product.title %></h1>
+                    <p><%= product.description %></p>
+                    <div class="price-container">
+                        <span class="original-price">$<%= product.price.toFixed(2) %></span>
+                        <% if (product.discountPercentage > 0) { %>
+                            <span class="discounted-price">$<%= (product.price * (1 - product.discountPercentage / 100)).toFixed(2) %></span>
+                            <span class="discount-percentage">(<%= product.discountPercentage %>% off)</span>
+                        <% } %>
+                    </div>
+                    <div class="rating-container">
+                        <span class="rating">Rating: <%= product.rating %></span>
+                        <span class="stock">Stock: <%= product.stock %> units available</span>
+                    </div>
+                    <div class="brand-category">
+                        <span class="brand">Brand: <%= product.brand %></span>
+                        <span class="category">Category: <%= product.category %></span>
+                    </div>
+                    <a href="/add-to-cart/<%= product.id %>">+ Add to Cart</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <!-- Enlace para la página anterior -->
+    <% if (currentPage > 1) { %>
+        <a href="/?page=<%= currentPage - 1 %>" class="pagination-link">Página anterior</a>
+    <% } %>
+
+    <!-- Enlace para la página siguiente -->
+    <% if (currentPage < totalPages) { %>
+        <a href="/?page=<%= currentPage + 1 %>" class="pagination-link">Página siguiente</a>
+    <% } %>
+
+    <!-- Selección de página -->
+    <select id="page-selection" class="page-selection" onchange="window.location.href='/?page=' + this.value">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <option value="<%= i %>" <% if (i === currentPage) { %> selected <% } %>><%= i %></option>
+        <% } %>
+    </select>
+</main>
+
+<%- include("includes/foot.ejs") %>
