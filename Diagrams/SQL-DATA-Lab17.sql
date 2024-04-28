@@ -62,7 +62,7 @@ INSERT INTO Payment (IdPayment, paymentMethod) VALUES
 (5, "Stripe");
 
 -- Datos para la tabla de Órdenes (Order)
-INSERT INTO `Order` (IdOrder, IdUser, IdPayment, orderNumber, orderDate, deleted, paid) VALUES
+INSERT INTO Cart (IdCart, IdUser, IdPayment, orderNumber, orderDate, deleted, paid) VALUES
 (1, 1, 1, "ORD123", '2024-04-01', FALSE, TRUE),
 (2, 2, 2, "ORD456", '2024-04-02', FALSE, TRUE),
 (3, 3, 3, "ORD789", '2024-04-03', FALSE, TRUE),
@@ -76,14 +76,6 @@ INSERT INTO Product (IdProduct, IdUser, title, description, price, discountPerce
 (3, 9, "Samsung Universe 9", "Samsung's new variant which goes beyond Galaxy to the Universe", 1249, 15.46, 4.09, 36, "Samsung", "smartphones", "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg"),
 (4, 10, "OPPOF19", "OPPO F19 is officially announced on April 2021.", 280, 17.91, 4.3, 123, "OPPO", "smartphones", "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"),
 (5, 3, "Huawei P30", "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.", 499, 10.58, 4.09, 32, "Huawei", "smartphones", "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg");
-
--- Datos para la tabla de Carritos (Cart)
-INSERT INTO Cart (IdCart) VALUES
-(1),
-(2),
-(3),
-(4),
-(5);
 
 -- Datos para la tabla de Productos en Carritos (Includes)
 INSERT INTO Includes (IdCart, IdProduct, price, quantity, discount, total, date) VALUES

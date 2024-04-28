@@ -62,8 +62,8 @@ CREATE TABLE Payment (
 );
 
 -- Tabla de Órdenes
-CREATE TABLE Order (
-    IdOrder INT PRIMARY KEY,
+CREATE TABLE Cart (
+    IdCart INT PRIMARY KEY,
     IdUser INT,
     IdPayment INT,
     orderNumber VARCHAR(20),
@@ -88,11 +88,6 @@ CREATE TABLE Product (
     category VARCHAR(50),
     thumbnail VARCHAR(100),
     FOREIGN KEY (IdUser) REFERENCES User(IdUser)
-);
-
--- Tabla de Carritos
-CREATE TABLE Cart (
-    IdCart INT PRIMARY KEY
 );
 
 -- Tabla de Productos en Carritos
