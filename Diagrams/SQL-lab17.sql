@@ -12,7 +12,7 @@ CREATE TABLE User (
     age INT,
     gender CHAR(1),
     email VARCHAR(100),
-    username VARCHAR(255),
+    username VARCHAR(255) UNIQUE,
     password VARCHAR(255)
 );
 
