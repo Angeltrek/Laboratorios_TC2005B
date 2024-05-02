@@ -6,20 +6,20 @@ USE ecommerce;
 
 -- Tabla de Usuarios
 CREATE TABLE User (
-    IdUser INT PRIMARY KEY,
+    IdUser INT PRIMARY KEY AUTO_INCREMENT,
     firstName VARCHAR(50),
     lastName VARCHAR(50),
     age INT,
     gender CHAR(1),
-    email VARCHAR(100),
-    username VARCHAR(255) UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    username VARCHAR(255),
     password VARCHAR(255)
 );
 
 -- Tabla de Roles
 CREATE TABLE Role (
     IdRole INT PRIMARY KEY,
-    descriptionRole VARCHAR(100)
+    descriptionRole VARCHAR(100) UNIQUE
 );
 
 -- Tabla de Asignaciones de Roles a Usuarios
@@ -34,7 +34,7 @@ CREATE TABLE Have (
 -- Tabla de Privilegios
 CREATE TABLE Privilege (
     IdPrivilege INT PRIMARY KEY,
-    descriptionPrivilege VARCHAR(100)
+    descriptionPrivilege VARCHAR(100) UNIQUE
 );
 
 -- Tabla de Asignaciones de Privilegios a Roles
@@ -58,12 +58,12 @@ CREATE TABLE Seller (
 -- Tabla de Pagos
 CREATE TABLE Payment (
     IdPayment INT PRIMARY KEY,
-    paymentMethod VARCHAR(50)
+    paymentMethod VARCHAR(50) UNIQUE
 );
 
 -- Tabla de Órdenes
 CREATE TABLE Cart (
-    IdCart INT PRIMARY KEY,
+    IdCart INT PRIMARY KEY AUTO_INCREMENT,
     IdUser INT,
     IdPayment INT,
     orderNumber VARCHAR(20),
@@ -76,7 +76,7 @@ CREATE TABLE Cart (
 
 -- Tabla de Productos
 CREATE TABLE Product (
-    IdProduct INT PRIMARY KEY,
+    IdProduct INT PRIMARY KEY AUTO_INCREMENT,
     IdUser INT,
     title VARCHAR(100),
     description TEXT,
@@ -92,6 +92,7 @@ CREATE TABLE Product (
 
 -- Tabla de Productos en Carritos
 CREATE TABLE Includes (
+    IdIncludes INT PRIMARY KEY AUTO_INCREMENT,
     IdCart INT,
     IdProduct INT,
     price DECIMAL(10, 2),
@@ -99,7 +100,6 @@ CREATE TABLE Includes (
     discount DECIMAL(5, 2),
     total DECIMAL(10, 2),
     date DATE,
-    PRIMARY KEY (IdCart, IdProduct),
     FOREIGN KEY (IdCart) REFERENCES Cart(IdCart),
     FOREIGN KEY (IdProduct) REFERENCES Product(IdProduct)
 );
