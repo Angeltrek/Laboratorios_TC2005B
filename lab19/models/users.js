@@ -70,6 +70,38 @@ class Users {
     }
   }
 
+  async setSellerRole(IdUser) {
+    try {
+      await db.execute("UPDATE Have SET IdRole = 2 WHERE IdUser = ?;", [
+        IdUser,
+      ]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async createSeller(IdUser, phone, address) {
+    try {
+      await db.execute(
+        "INSERT INTO Seller (IdUser, earnings, phone, address) VALUES (?, ?, ?, ?);",
+        [IdUser, 0.0, phone, address]
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getPrivileges(IdRole) {
+    try {
+      return await db.execute(
+        "SELECT descriptionPrivilege FROM Privilege AS p JOIN Own AS o ON o.IdPrivilege = p.IdPrivilege WHERE o.IdRole = ?;",
+        [IdRole]
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async getName(IdUser) {
     return await db.execute("SELECT firstName FROM User WHERE IdUser = ?", [
       IdUser,

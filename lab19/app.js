@@ -7,6 +7,7 @@ const homeRoutes = require("./routes/homeRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const loginRoutes = require("./routes/loginRoutes");
 const clientRoutes = require("./routes/clientServicesRoutes");
+const sellerRoutes = require("./routes/sellerRoutes");
 const path = require("path");
 const PORT = 3005;
 
@@ -32,6 +33,7 @@ app.use("/", homeRoutes);
 app.use("/cart", cartRoutes);
 app.use("/login", loginRoutes);
 app.use("/client-services", clientRoutes);
+app.use("/sell", sellerRoutes);
 
 app.use((req, res, next) => {
   res.status(404).send("Error 404: Página no encontrada");
