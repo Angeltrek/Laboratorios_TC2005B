@@ -31,19 +31,18 @@ INSERT INTO Have (IdUser, IdRole) VALUES
 
 -- Datos para la tabla de Privilegios (Privilege)
 INSERT INTO Privilege (IdPrivilege, descriptionPrivilege) VALUES
-(1, "Create Product"),
-(2, "Edit Product"),
+(1, "Buy Product"),
+(2, "Sell Product"),
 (3, "Delete Product"),
-(4, "View Orders"),
-(5, "Process Payments");
+(4, "Modify Product");
 
 -- Datos para la tabla de Asignaciones de Privilegios a Roles (Own)
 INSERT INTO Own (IdRole, IdPrivilege) VALUES
 (1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(2, 5);
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4);
 
 -- Datos para la tabla de Vendedores (Seller)
 INSERT INTO Seller (IdUser, earnings, phone, address) VALUES
