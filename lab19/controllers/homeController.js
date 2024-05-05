@@ -26,20 +26,16 @@ exports.addToCart = async (req, res) => {
   const productId = req.params.productId;
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
-  const [cart, metadata1] = await ShoppingCart.getShoppingCart(IdUser);
 
-  if (IdUser && cart.length > 0) {
+  const [cart, metadata1] = await ShoppingCart.getShoppingCart(IdUser);
+  if (cart) {
     const IdCart = cart[0].IdCart;
     const [product, metadata2] = await Products.getProduct(productId);
 
     ShoppingCart.addToCart(IdCart, product[0], formattedDate);
-
-    res.redirect("/");
-  } else {
-    req.flash(
-      "alert",
-      "Debes iniciar sesión para agregar productos al carrito"
-    );
-    res.redirect("/cart");
   }
+
+  res.redirect("/cart");
+  req.flash("alert", "Debes iniciar sesión para agregar productos al carrito");
+  res.redirect("/");
 };

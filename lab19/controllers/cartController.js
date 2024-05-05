@@ -4,7 +4,7 @@ exports.get_cart = async (req, res, next) => {
   const IdUser = req.session.IdUser;
   const [cart, metadata1] = await ShoppingCart.getShoppingCart(IdUser);
 
-  if (IdUser && cart.length > 0) {
+  if (IdUser && cart) {
     const [cartProducts, metadata2] = await ShoppingCart.getCartProducts(
       cart[0].IdCart,
       IdUser

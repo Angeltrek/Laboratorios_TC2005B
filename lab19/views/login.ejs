@@ -5,6 +5,7 @@
     <h2>Iniciar sesión</h2>
     <p class="error"><%= messages.error %></p>
     <form id="login-form" action="/login/session" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />

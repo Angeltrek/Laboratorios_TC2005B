@@ -4,32 +4,28 @@ exports.get_sell = async (req, res, next) => {
   const IdUser = req.session.IdUser;
   const role = req.session.role;
 
-  if (IdUser) {
-    if (role === 2) {
-      const [privileges, metadata] = await Users.getPrivileges(role);
+  if (role === 2) {
+    const [privileges, metadata] = await Users.getPrivileges(role);
 
-      const sellProduct = privileges.filter(
-        (priv) => priv.descriptionPrivilege === "Sell Product"
-      );
+    const sellProduct = privileges.filter(
+      (priv) => priv.descriptionPrivilege === "Sell Product"
+    );
 
-      if (sellProduct) {
-        res.render("sell", {
-          active: "sell",
-          session: req.session,
-          messages: req.flash(),
-        });
-      } else {
-        res.redirect("/");
-      }
-    } else {
-      res.render("registerSeller", {
+    if (sellProduct) {
+      res.render("sell", {
         active: "sell",
         session: req.session,
         messages: req.flash(),
       });
+    } else {
+      res.redirect("/");
     }
   } else {
-    res.redirect("/");
+    res.render("registerSeller", {
+      active: "sell",
+      session: req.session,
+      messages: req.flash(),
+    });
   }
 };
 

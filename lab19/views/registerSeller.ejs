@@ -5,6 +5,7 @@
     <h2>Registrarse como Vendedor</h2>
     <p class="error"><%= messages.error %></p>
     <form id="login-form" action="/sell/register-seller" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <div class="form-group">
         <label for="phone">Phone:</label>
         <input type="text" id="phone" name="phone" required />

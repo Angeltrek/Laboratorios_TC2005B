@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const isAuth = require("./isAuth");
 
 const controller = require("../controllers/sellerController");
 
-router.get("/", controller.get_sell);
+router.get("/", isAuth, controller.get_sell);
 
-router.post("/register-seller", controller.register_seller);
+router.post("/register-seller", isAuth, controller.register_seller);
 
 module.exports = router;
