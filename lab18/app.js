@@ -3,6 +3,8 @@ const app = express();
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
+const csrf = require("csurf");
+const csrfProtection = csrf();
 const homeRoutes = require("./routes/homeRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const loginRoutes = require("./routes/loginRoutes");
@@ -14,14 +16,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(flash());
-
 app.use(
   session({
-    secret: "87AjdK10BU65", // Clave secreta para firmar la sesión
+    secret: "87AAdK10JU65", // Clave secreta para firmar la sesión
     resave: false,
     saveUninitialized: true,
   })
 );
+app.use(csrfProtection);
+
+app.use((request, response, next) => {
+  response.locals.csrfToken = request.csrfToken();
+  next();
+});
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
